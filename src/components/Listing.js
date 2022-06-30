@@ -1,11 +1,17 @@
+import React from "react";
 import ListingItem from "./ListingItem";
 import PropTypes from 'prop-types';
 
 export default function Listing({ items }) {
     if (items.length === 0) return null;
+
+    const filtered = items.filter(element => {
+        return element.state !== 'removed';
+    });
+
     return (
       <div className="item-list">
-        {items.map((item) => (
+        {filtered.map((item) => (
           <ListingItem
             url={item.url}
             img={item.MainImage}
